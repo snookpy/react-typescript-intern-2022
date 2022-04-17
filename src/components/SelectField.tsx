@@ -1,29 +1,26 @@
+import { ReactNode } from "react";
+
 interface SelectFieldProps {
   items: any[];
-  onSelect: any
-  itemKey: any;
-  itemName: any;
-  label?: string
+  onSelect: (selectId: any) => void;
+  children: (item: any) => ReactNode;
+  label?: string;
 }
 
-function SelectField({ label, items, itemName, itemKey, onSelect }: SelectFieldProps) {
+function SelectField({ label, items, children, onSelect }: SelectFieldProps) {
   const handleChange = (item: any) => {
     onSelect(item);
   };
   return (
-      <>
+    <>
       <label htmlFor="">{label}</label>
-    <select
-      onChange={(e) => {
-        handleChange(items.find(f => f[itemKey] === e.target.value));
-      }}
-    >
-      {items.map((m) => (
-        <option key={m[itemKey]} value={m[itemKey]}>
-          {m[itemName]}
-        </option>
-      ))}
-    </select>
+      <select
+        onChange={(e) => {
+          handleChange(e.target.value);
+        }}
+      >
+        {items.map((m) => children(m))}
+      </select>
     </>
   );
 }

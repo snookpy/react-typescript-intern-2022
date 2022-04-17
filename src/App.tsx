@@ -1,6 +1,5 @@
 import { useState } from "react";
 import SelectField from "./components/SelectField";
-import Car from "./models/Car";
 
 const cars: any[] = [
   {
@@ -21,13 +20,17 @@ const cars: any[] = [
 ];
 
 function App() {
-  const [name, setName] = useState("");
-  const [car, setCar] = useState(undefined);
+  const [name, setName] = useState<string>("");
+  const [carId, setCarId] = useState<string>();
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
-    alert(`Your name is ${name} want to buy the ${JSON.stringify(car)}`);
+    alert(
+      `Your name is ${name} want to buy the ${JSON.stringify(
+        cars.find((f) => f.model === carId)
+      )}`
+    );
   };
 
   return (
@@ -42,15 +45,22 @@ function App() {
       </div>
       <div>
         <SelectField
-        label="Select a Car"
+          label="Select a Car"
           items={cars}
           onSelect={(selectCar: any) => {
-            console.log('selectCar selectCar: ', selectCar)
-            setCar(selectCar);
+            console.log("selectCar selectCar: ", selectCar);
+            setCarId(selectCar);
           }}
-          itemKey={'model'}
-          itemName={'model'}
-        />
+        >
+          {(item) => (
+            <option key={item.model} value={item.model}>
+              {item.model}
+            </option>
+          )}
+        </SelectField>
+      </div>
+      <div>
+        <button> Submit </button>
       </div>
     </form>
   );
