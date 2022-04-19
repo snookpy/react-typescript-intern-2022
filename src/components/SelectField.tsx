@@ -4,7 +4,7 @@ interface SelectFieldProps {
   items: any[];
   onSelect: (selectId: any) => void;
   children: (item: any) => ReactNode;
-  label?: string;
+  label?: any;
 }
 
 function SelectField({ label, items, children, onSelect }: SelectFieldProps) {

@@ -20,8 +20,8 @@ const cars: any[] = [
 ];
 
 function App() {
-  const [name, setName] = useState<string>("");
-  const [carId, setCarId] = useState<string>();
+  const [name, setName] = useState<any>("");
+  const [carId, setCarId] = useState<any>();
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
