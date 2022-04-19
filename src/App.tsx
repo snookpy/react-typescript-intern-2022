@@ -21,14 +21,14 @@ const cars: any[] = [
 
 function App() {
   const [name, setName] = useState<any>("");
-  const [carId, setCarId] = useState<any>();
+  const [carModel, setCarModel] = useState<any>();
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
     alert(
       `Your name is ${name} want to buy the ${JSON.stringify(
-        cars.find((f) => f.model === carId)
+        cars.find((f) => f.model === carModel)
       )}`
     );
   };
@@ -49,7 +49,7 @@ function App() {
           items={cars}
           onSelect={(selectCar: any) => {
             console.log("selectCar selectCar: ", selectCar);
-            setCarId(selectCar);
+            setCarModel(selectCar);
           }}
         >
           {(item) => (
